@@ -1,1 +1,3 @@
-# smallsketch-note-docs
+
+# SmallSketch Note User Guide
+

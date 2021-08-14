@@ -1,0 +1,13 @@
+= SmallSketch Note User Guide
+SmallSketch Note <https://smallsketch.app/>
+:doctype: book
+:source-highlighter: coderay
+:toc: left
+:sectnums:
+:sectanchors:
+:icons: font
+:imagesdir: ../images
+
+This document explains SmallSketch Note Version 1.1.2.
+
+include::user-guide.adoc[]

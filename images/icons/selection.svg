@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg version="1.1" xmlns="http://www.w3.org/2000/svg" x="0" y="0" width="24" height="24"  viewBox="0 0 24 24">
+	<path
+		fill="#666"
+		d="M5,5 v4 h2 v-2 h2 v-2 z M5,10 v4 h2 v-4 z M5,19 v-4 h2 v2 h2 v2 z M10,19 h4 v-2 h-4 z M19,19 h-4 v-2 h2 v-2 h2 z M19,10 v4 h-2 v-4 z M19,5 v4 h-2 v-2 h-2 v-2 z M10,5 v2 h4 v-2 z"/>
+</svg>

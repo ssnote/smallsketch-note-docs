@@ -1,0 +1,492 @@
+
+= SmallSketch Note User Guide
+
+== Introduction
+
+SmallSketch Note is a simple handwriting and S Pen centric application for Android tablets.
+
+image::screenshots/overview.png[alt=SmallSketch Note, width=600]
+
+
+=== Key Features
+
+* Hand writing with S Pen
+* Pen centric interaction design
+* No frills UI for focusing on your thinking
+* Backup and sync notes with https://couchdb.apache.org/[Apache CouchDB]
+* link:#DigitalInkRecognition[Digital Ink Recognition]
+
+
+=== Requirements
+
+* Android 6.0 (Marshmallow) or newer
+* *S Pen* or Native Android Stylus
+
+
+=== Installation
+
+You can install this app from https://play.google.com/store/apps/details?id=app.smallsketch.note[google play store].
+
+
+=== Getting help
+
+If you have any questions, please https://smallsketch.app/contact.html[make contact].
+And also your feedback will be much appreciated.
+
+To get update information, see 
+https://www.facebook.com/mindboardapps[Facebook] / https://twitter.com/smallsketchapp/[Twitter].
+
+
+== Basic Usage
+
+=== Activities
+
+- link:#PageList[Page List]
+- link:#Editor[Editor]
+- link:#PenAndPageSettings[Pen and Page Settings]
+- link:#CloudSettings[Cloud Settings]
+
+
+[[PageList]]
+=== Page List
+
+image::screenshots/finder.png[alt=Page List, width=600]
+
+* image:icons/goto-editor.svg[Go to Editor] Go to link:#Editor[Editor]
+* image:icons/backup-and-sync.svg[Backup and Sync] Backup and Sync
+* image:icons/add-page.svg[Add Page] Add New Page
+* Menu
+** Import
+** Export
+** Export as PDF
+** link:#PenAndPageSettings[Pen and Page Settings]
+** link:#CloudSettings[Cloud Settings]
+
+TIP: Backup and Sync Icon appears only if Cloud Features ON link:#CloudSettings[Cloud Settings]
+
+
+==== Import / Export
+
+You can import/export a page from/to Google Drive as link:#SSNFormat[SSN format].
+
+TIP: When import, this app support *SSF format* that is a https://play.google.com/store/apps/details?id=com.mindboardapps.app.smallsketch[Small Sketch] native format.
+
+
+[[Editor]]
+=== Editor
+
+image::screenshots/editor.png[alt=Editor, width=600]
+
+* image:icons/goto-finder.svg[Go to Finder] Go back to link:#PageList[Page List]
+* image:icons/add-page.svg[Add Page] Add New Page
+* image:icons/preview-pdf.svg[Preview PDF] Preview PDF
+* image:icons/fullscreen.svg[Fullscreen] Fullscreen / Exit Fullscreen
+
+Mode
+
+* image:icons/pen.svg[Pen] Pen
+* image:icons/eraser.svg[Eraser] Eraser
+* image:icons/selection.svg[Selection] Selection
+
+Edit
+
+* image:icons/undo.svg[Undo] Undo
+* image:icons/redo.svg[Redo] Redo
+
+
+Editor has 3 modes, Pen/Eraser/Selection.
+And under the pen mode, using double tap gesture switch to or back *Zoom Mode* and *Normal Pen Mode*.
+
+
+==== Under Pen Mode
+
+* Stylus:
+** Draw strokes
+* Stylus(Eraser):
+** Delete strokes
+* Two Finger: 
+** Scroll
+* One Finger double tap:
+** Entering *Zoom Mode*
+*** Under zoom mode, you can use two finger pinch in out. 
+*** In order to exit *Zoom Mode*, double tap with one finger again.
+
+
+==== Under Eraser Mode
+
+* Stylus:
+** Delete strokes
+
+
+==== Under Selection Mode
+
+* Stylus:
+** Create a group: lasso and create a group
+** Ungroup groups: stroke groups in vertical
+** Delete groups: stroke groups in horizontal
+** Resize a group
+** Rotate a group
+
+===== Group
+
+Lasso strokes with stylus and make them a group.
+
+video::videos/group.mp4[width=600]
+
+
+////
+===== Move a Group
+
+===== Resize a Group
+
+===== Rotate a Group
+
+===== Ungroup Groups
+
+===== Delete Groups
+////
+
+
+
+[[PenAndPageSettings]]
+=== Pen and Page Settings
+
+image::screenshots/pen-and-page-settings.png[alt=Pen and Page Settings, width=600]
+
+* image:icons/go-back.svg[Go Back] Go back to link:#PageList[Page List]
+
+* Pen
+** Pen1 Color and Nib Width
+
+* Page
+** Size
+** Orientation
+** Type
+
+
+[[CloudSettings]]
+=== Cloud Settings
+
+image::screenshots/cloud-settings.png[alt=Cloud Settings, width=600]
+
+* image:icons/go-back.svg[Go Back] Go back to link:#PageList[Page List]
+
+* Menu
+** Import
+** Export
+** Sync Log
+
+
+==== Endpoint
+
+You can backup and sync your notes with https://couchdb.apache.org/[Apache CouchDB].
+See also the section link:#SetupCouchDB[Setting up your own CouchDB Server].
+
+
+[[DigitalInkRecognition]]
+==== Digital Ink Recognition
+
+About https://developers.googleblog.com/2020/08/digital-ink-recognition-in-ml-kit.html[Digital Ink Recognition] __Lang Code__, see https://developers.google.com/ml-kit/vision/digital-ink-recognition/base-models[this page] in details.
+
+
+
+== Advanced Usage
+
+[[SetupCouchDB]]
+=== Setting up your own CouchDB Server
+
+It explains how to install CouchDB on Ubuntu 20.04.
+
+TIP: Please also refer the official https://docs.couchdb.org/en/stable/install/unix.html[CouchDB install document].
+
+
+==== Install CouchDB
+
+Enabling the Apache CouchDB package repository:
+
+[source, shell]
+----
+$ sudo apt-get install -y gnupg ca-certificates
+$ echo "deb https://apache.bintray.com/couchdb-deb focal main" \
+ sudo tee /etc/apt/sources.list.d/couchdb.list
+----
+
+Installing the Apache CouchDB packages:
+
+[source, shell]
+----
+$ sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys \
+  8756C4F765C9AC3CB6B85D62379CE192D401AB61
+----
+
+and
+
+[source, shell]
+----
+$ sudo apt update
+$ sudo apt install -y couchdb
+----
+
+Under installing couchdb you have to answer for these questions:
+
+* Server Type : standalone
+* IP address : 127.0.0.1
+* CouchdDB admin's password: _set up what you want_
+
+After installing couchdb, check couchdb is running.
+
+[source, shell]
+----
+$ systemctl status couchdb
+----
+
+And you can use systemctl command options _stop, start, restart_.
+
+An example when you stop CouchDB:
+
+[source, shell]
+----
+$ systemctl stop couchdb
+----
+
+
+==== Configure CouchDB
+
+For using CouchDB as SmallSketch Note's server, just doing 4 steps under following. 
+
+TIP: It needs _curl_ command. If necessary, do _sudo apt install curl_.
+
+
+===== Prepearing
+
+Before start configuring, check CouchDB is running by curl.
+
+[source, shell]
+----
+$ curl http://admin:adminpasswd@127.0.0.1:5984/_up
+----
+
+TIP: Replace _adminpasswd_ with yours.
+
+If CouchDB is running, returning such a message:
+
+[source, shell]
+----
+{"status":"ok","seeds":{}}
+----
+
+If not running, use systemctl command and make CouchDB running.
+
+[source, shell]
+----
+$ systemctl start couchdb
+----
+  
+
+===== Step1 Add User
+
+To add a CouchDB user, create a _user.json_ file in current dir like this:
+
+[source, json]
+----
+{
+  "docs": [
+    {
+      "_id": "org.couchdb.user:alice",
+      "name": "alice",
+      "password": "aliceInWonderland",
+      "roles": [],
+      "type": "user"
+    }
+  ]
+}
+----
+
+TIP: In this case, username is _alice_ and password is _aliceInWonderland_.  You can change them with what you want.
+
+
+And do this:
+
+[source, shell]
+----
+$ curl -X POST -H "Content-Type:application/json" -d @user.json http://admin:adminpasswd@127.0.0.1:5984/_users/_bulk_docs
+----
+
+If this command works, you get the message like this:
+
+[source, json]
+----
+[{"ok":true,"id":"org.couchdb.user:alice","rev":"1-18d335cdfa1c7df9f71fdab2e2ed0264"}]
+----
+
+The _alice_ user has been added.
+
+
+===== Step2 Add Database
+
+To add a CouchDB database, do this:
+
+[source, shell]
+----
+$ curl -X PUT http://admin:adminpasswd@127.0.0.1:5984/ssnote
+----
+
+TIP: This _ssnote_ is database name. You can change another database name what you want.
+
+
+If this command is successful, you get this message:
+
+[source, json]
+----
+{"ok":true}
+----
+
+
+===== Step3 Add Security
+
+Next, update this _ssnote_ database security for the _alice_ user.
+
+To get current the _ssnote_ database security settings:
+
+[source, shell]
+----
+$ curl -X GET http://admin:adminpasswd@127.0.0.1:5984/ssnote/_security
+{"members":{"roles":["_admin"]},"admins":{"roles":["_admin"]}}
+----
+
+And a _create security.json_ file in current dir:
+
+[source, json]
+----
+{
+  "members": {
+    "roles": [
+      "_admin"
+    ]
+  },
+  "admins": {
+    "roles": [
+      "_admin"
+    ],
+    "names": [
+      "alice"
+    ]
+  }
+}
+----
+
+TIP: This json file, just adding the _alice_ user into _admins.names_ from the current security settings json.
+
+To update the security, do this:
+
+[source, shell]
+----
+$ curl -X PUT -H "Content-Type:application/json" -d @security.json http://admin:adminpasswd@127.0.0.1:5984/ssnote/_security
+{"ok":true}
+----
+
+Check if the user alice is in _admins.names_, get the security again:
+
+[source, shell]
+----
+$ curl -X GET http://admin:adminpasswd@127.0.0.1:5984/ssnote/_security
+----
+
+////
+MEMO: keep this note, but this setting is applied automatic by smallsketch note client. So there is no need to set up any more.
+
+Add design document
+
+
+Create _designdoc.json_ file in current dir:
+
+[source, json]
+----
+{
+  "language": "javascript",
+  "views": {
+    "count": {
+      "map": "function(doc){ if(doc.sync_id!=null){ emit(doc.sync_id, 1) } }",
+      "reduce": "function(key, value){ return sum(value) }"
+    }
+  }
+}
+----
+
+And then do this:
+
+[source, shell]
+----
+$ curl -X PUT -H "Content-Type:application/json" -d @designdoc.json http://admin:adminpasswd@127.0.0.1:5984/ssnote/_design/count
+{"ok":true,"id":"_design/count","rev":"1-b380c17bbeaf2ab84a3415c6983c85e5"}
+----
+
+It has been added the design document _count_ in the _ssnote_ database.
+////
+
+
+===== Step4 Httpd 
+
+This is the final step, make CouchDB as httpd.
+
+Edit the CouchDB _local.ini_ file.
+In Ubuntu 20.04, the _local.ini_ is placed in _/opt/couchdb/etc/local.ini_.
+
+[source, shell]
+----
+sudo vi /opt/couchdb/etc/local.ini
+----
+
+And uncommentout _port_ and _bind\_address_ settings in chttpd section, like this:
+
+[source, plaintext]
+----
+[chttpd]
+port = 5984
+bind_address = 192.168.10.100
+----
+
+This binding IP Address _192.168.10.100_ is an example.
+Change this value with yours.
+
+To apply this settings, restart CouchDB:
+
+[source, shell]
+----
+sudo systemctl restart couchdb
+----
+
+Let's check if it's works, access _http://192.168.10.100:5984/_ with browser.
+
+
+That is all to config CouchDB for SmallSketch Note.
+
+
+==== Cloud Settings
+
+In order to use the CouchDB from SmallSketch Note, set up link:#CloudSettings[Cloud Settings].
+
+image::screenshots/cloud-settings-with-alice.png[alt=Cloud Settings with Alice, width=600]
+
+
+===== Endpoint
+
+* URL: http://192.168.10.100:5984/ssnote
+* Username: alice
+* Password: aliceInWonderland
+
+Of course, these parameters are just examples. Please change them with yours.
+
+TIP: About URL:  http:// + CouchDB IP address + : + port + / + CouchDB database name
+
+
+
+
+[[SSNFormat]]
+=== ssn2svg
+
+This app native data format is called *SSN*.
+SSN format data can be converted to SVG with https://github.com/ssnote/ssn2svg[ssn2svg].
+And you can also download executable binary ssn2svg command from https://github.com/ssnote/ssn2svg/releases[github release].
+It is supported Windows/MacOS/Linux.
+
