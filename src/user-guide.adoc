@@ -50,7 +50,7 @@ https://www.facebook.com/mindboardapps[Facebook] / https://twitter.com/smallsket
 [[PageList]]
 === Page List
 
-image::screenshots/finder.png[alt=Page List, width=600]
+image::screenshots/pagelist.png[alt=Page List, width=600]
 
 * image:icons/goto-editor.svg[Go to Editor] Go to link:#Editor[Editor]
 * image:icons/backup-and-sync.svg[Backup and Sync] Backup and Sync
