@@ -261,7 +261,7 @@ After installing couchdb, check couchdb is running.
 
 [source, shell]
 ----
-$ systemctl status couchdb
+$ sudo systemctl status couchdb
 ----
 
 And you can use systemctl command options _stop, start, restart_.
@@ -270,7 +270,7 @@ An example when you stop CouchDB:
 
 [source, shell]
 ----
-$ systemctl stop couchdb
+$ sudo systemctl stop couchdb
 ----
 
 
@@ -303,7 +303,7 @@ If not running, use systemctl command and make CouchDB running.
 
 [source, shell]
 ----
-$ systemctl start couchdb
+$ sudo systemctl start couchdb
 ----
   
 
@@ -461,7 +461,7 @@ In Ubuntu 20.04, the _local.ini_ is placed in _/opt/couchdb/etc/local.ini_.
 sudo vi /opt/couchdb/etc/local.ini
 ----
 
-And uncommentout _port_ and _bind\_address_ settings in chttpd section, like this:
+And uncommentout _port_ and _bind_address_ settings in chttpd section, like this:
 
 [source, plaintext]
 ----
@@ -480,7 +480,7 @@ To apply this settings, restart CouchDB:
 sudo systemctl restart couchdb
 ----
 
-Let's check if it's works, access _http://192.168.10.100:5984/_ with browser.
+Let's check if it's workiing, access _http://192.168.10.100:5984/_ with browser.
 
 
 That is all to config CouchDB for SmallSketch Note.
@@ -490,7 +490,7 @@ TIP: If you want use CouchDB on the internet, you can use nginx and reverse prox
 
 ==== Cloud Settings
 
-In order to use the CouchDB from SmallSketch Note, set up link:#CloudSettings[Cloud Settings].
+In order to use this CouchDB from SmallSketch Note, set up link:#CloudSettings[Cloud Settings].
 
 image::screenshots/cloud-settings-with-alice.png[alt=Cloud Settings with Alice, width=600]
 
