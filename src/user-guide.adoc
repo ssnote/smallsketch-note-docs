@@ -137,21 +137,45 @@ video::videos/group.mp4[width=600]
 ////
 ===== Move a Group
 
+////
+
 ===== Resize a Group
+
+Drag a right-bottom resize handle of the group with stylus.
+
+video::videos/resize_group.mp4[width=600]
 
 ===== Rotate a Group
 
+Drag a right-bottom rotate handle of the group with stylus.
+
+video::videos/rotate_group.mp4[width=600]
+
+
 ===== Ungroup Groups
 
-===== Delete Groups
-////
+Stroke a group as vertical with stylus.
 
+video::videos/ungroup.mp4[width=600]
+
+TIP: You can also ungroup *groups* at once.
+
+
+===== Delete Groups
+
+Stroke a group as horizontal with stylus.
+
+video::videos/delete_group.mp4[width=600]
+
+TIP: You can also delete *groups* at once.
 
 
 [[PenAndPageSettings]]
 === Pen and Page Settings
 
 image::screenshots/pen-and-page-settings.png[alt=Pen and Page Settings, width=600]
+
+TIP: This settings change will be applied to a new page.
 
 * image:icons/go-back.svg[Go Back] Go back to link:#PageList[Page List]
 
@@ -461,6 +485,8 @@ Let's check if it's works, access _http://192.168.10.100:5984/_ with browser.
 
 That is all to config CouchDB for SmallSketch Note.
 
+TIP: If you want use CouchDB on the internet, you can use nginx and reverse proxy.
+
 
 ==== Cloud Settings
 
@@ -488,5 +514,5 @@ TIP: About URL:  http:// + CouchDB IP address + : + port + / + CouchDB database 
 This app native data format is called *SSN*.
 SSN format data can be converted to SVG with https://github.com/ssnote/ssn2svg[ssn2svg].
 And you can also download executable binary ssn2svg command from https://github.com/ssnote/ssn2svg/releases[github release].
-It is supported Windows/MacOS/Linux.
+It is supported Linux/Windows/macOS.
 
