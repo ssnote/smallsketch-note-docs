@@ -294,7 +294,7 @@ TIP: Replace _adminpasswd_ with yours.
 
 If CouchDB is running, returning such a message:
 
-[source, shell]
+[source, json]
 ----
 {"status":"ok","seeds":{}}
 ----
@@ -458,7 +458,7 @@ In Ubuntu 20.04, the _local.ini_ is placed in _/opt/couchdb/etc/local.ini_.
 
 [source, shell]
 ----
-sudo vi /opt/couchdb/etc/local.ini
+$ sudo vi /opt/couchdb/etc/local.ini
 ----
 
 And uncommentout _port_ and _bind_address_ settings in chttpd section, like this:
@@ -477,7 +477,7 @@ To apply this settings, restart CouchDB:
 
 [source, shell]
 ----
-sudo systemctl restart couchdb
+$ sudo systemctl restart couchdb
 ----
 
 Let's check if it's workiing, access _http://192.168.10.100:5984/_ with browser.
