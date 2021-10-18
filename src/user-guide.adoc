@@ -69,7 +69,7 @@ TIP: Backup and Sync Icon appears only if Cloud Features ON link:#CloudSettings[
 
 You can import/export a page from/to Google Drive as link:#SSNFormat[SSN format].
 
-TIP: When import, this app support *SSF format* that is a https://play.google.com/store/apps/details?id=com.mindboardapps.app.smallsketch[Small Sketch] native format.
+TIP: This app also supports *SSF format* import. SSF is https://play.google.com/store/apps/details?id=com.mindboardapps.app.smallsketch[Small Sketch] native format.
 
 
 [[Editor]]
@@ -133,6 +133,7 @@ Lasso strokes with stylus and make them a group.
 
 video::videos/group.mp4[width=600]
 
+TIP: Group can be moved anywhere with stylus.
 
 ////
 ===== Move a Group
