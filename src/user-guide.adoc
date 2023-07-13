@@ -287,14 +287,19 @@ $ sudo systemctl stop couchdb
 ----
 
 
-==== Configure CouchDB
+==== Config CouchDB for SmallSketch Note server
 
-For using CouchDB as SmallSketch Note's server, just doing 4 steps under following. 
+////
+For using CouchDB as SmallSketch Note's server, just doing a few steps. 
+
+////
+
+It takes under 4 steps.
 
 TIP: It needs _curl_ command. If necessary, do _sudo apt install curl_.
 
 
-===== Prepearing
+===== Step1 Prepearing
 
 Before start configuring, check CouchDB is running by curl.
 
@@ -320,7 +325,7 @@ $ sudo systemctl start couchdb
 ----
   
 
-===== Step1 Add Database
+===== Step2 Add Database
 
 To add a CouchDB database, do this:
 
@@ -340,7 +345,7 @@ If this command is successful, you get this message:
 ----
 
 
-===== Step2 Check Security
+===== Step3 Check Security
 
 To get and check current the _ssnote_ database security settings:
 
@@ -386,7 +391,7 @@ It has been added the design document _count_ in the _ssnote_ database.
 ////
 
 
-===== Step3 Httpd 
+===== Step4 Set up Httpd 
 
 This is the final step, make CouchDB as httpd.
 
