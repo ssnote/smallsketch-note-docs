@@ -1122,8 +1122,17 @@ See also the section <a href="#SetupCouchDB">Setting up your own CouchDB Server<
 </li>
 </ul>
 </div>
-<div class="paragraph">
-<p>Of couse admin passwword <em>adminpass</em> is an example.</p>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+Of couse admin passwword <em>adminpass</em> is an example.
+</td>
+</tr>
+</table>
 </div>
 <div class="paragraph">
 <p>After installing couchdb, check couchdb is running.</p>
@@ -1146,9 +1155,9 @@ See also the section <a href="#SetupCouchDB">Setting up your own CouchDB Server<
 </div>
 </div>
 <div class="sect3">
-<h4 id="_configure_couchdb"><a class="anchor" href="#_configure_couchdb"></a>3.1.2. Configure CouchDB</h4>
+<h4 id="_config_couchdb_for_smallsketch_note_server"><a class="anchor" href="#_config_couchdb_for_smallsketch_note_server"></a>3.1.2. Config CouchDB for SmallSketch Note server</h4>
 <div class="paragraph">
-<p>For using CouchDB as SmallSketch Note&#8217;s server, just doing 4 steps under following.</p>
+<p>It takes under 4 steps.</p>
 </div>
 <div class="admonitionblock tip">
 <table>
@@ -1163,7 +1172,7 @@ It needs <em>curl</em> command. If necessary, do <em>sudo apt install curl</em>.
 </table>
 </div>
 <div class="sect4">
-<h5 id="_prepearing"><a class="anchor" href="#_prepearing"></a>Prepearing</h5>
+<h5 id="_step1_prepearing"><a class="anchor" href="#_step1_prepearing"></a>Step1 Prepearing</h5>
 <div class="paragraph">
 <p>Before start configuring, check CouchDB is running by curl.</p>
 </div>
@@ -1202,7 +1211,7 @@ Replace <em>adminpasswd</em> with yours.
 </div>
 </div>
 <div class="sect4">
-<h5 id="_step1_add_database"><a class="anchor" href="#_step1_add_database"></a>Step1 Add Database</h5>
+<h5 id="_step2_add_database"><a class="anchor" href="#_step2_add_database"></a>Step2 Add Database</h5>
 <div class="paragraph">
 <p>To add a CouchDB database, do this:</p>
 </div>
@@ -1233,7 +1242,7 @@ This <em>ssnote</em> is database name.
 </div>
 </div>
 <div class="sect4">
-<h5 id="_step2_check_security"><a class="anchor" href="#_step2_check_security"></a>Step2 Check Security</h5>
+<h5 id="_step3_check_security"><a class="anchor" href="#_step3_check_security"></a>Step3 Check Security</h5>
 <div class="paragraph">
 <p>To get and check current the <em>ssnote</em> database security settings:</p>
 </div>
@@ -1248,7 +1257,7 @@ This <em>ssnote</em> is database name.
 </div>
 </div>
 <div class="sect4">
-<h5 id="_step3_httpd"><a class="anchor" href="#_step3_httpd"></a>Step3 Httpd</h5>
+<h5 id="_step4_set_up_httpd"><a class="anchor" href="#_step4_set_up_httpd"></a>Step4 Set up Httpd</h5>
 <div class="paragraph">
 <p>This is the final step, make CouchDB as httpd.</p>
 </div>
