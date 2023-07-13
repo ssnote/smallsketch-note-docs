@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="generator" content="Asciidoctor 2.0.16">
+<meta name="generator" content="Asciidoctor 2.0.20">
 <meta name="author" content="SmallSketch Note">
 <title>SmallSketch Note User Guide</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,300italic,400,400italic,600,600italic%7CNoto+Serif:400,400italic,700,700italic%7CDroid+Sans+Mono:400,700">
@@ -85,10 +85,10 @@ code{font-family:"Droid Sans Mono","DejaVu Sans Mono",monospace;font-weight:400;
 ul,ol,dl{line-height:1.6;margin-bottom:1.25em;list-style-position:outside;font-family:inherit}
 ul,ol{margin-left:1.5em}
 ul li ul,ul li ol{margin-left:1.25em;margin-bottom:0}
-ul.square li ul,ul.circle li ul,ul.disc li ul{list-style:inherit}
-ul.square{list-style-type:square}
 ul.circle{list-style-type:circle}
 ul.disc{list-style-type:disc}
+ul.square{list-style-type:square}
+ul.circle ul:not([class]),ul.disc ul:not([class]),ul.square ul:not([class]){list-style:inherit}
 ol li ul,ol li ol{margin-left:1.25em;margin-bottom:0}
 dl dt{margin-bottom:.3125em;font-weight:bold}
 dl dd{margin-bottom:1.25em}
@@ -194,7 +194,8 @@ body.toc2.toc-right{padding-left:0;padding-right:20em}}
 #content h1>a.link:hover,h2>a.link:hover,h3>a.link:hover,#toctitle>a.link:hover,.sidebarblock>.content>.title>a.link:hover,h4>a.link:hover,h5>a.link:hover,h6>a.link:hover{color:#a53221}
 details,.audioblock,.imageblock,.literalblock,.listingblock,.stemblock,.videoblock{margin-bottom:1.25em}
 details{margin-left:1.25rem}
-details>summary{cursor:pointer;display:block;position:relative;line-height:1.6;margin-bottom:.625rem;-webkit-tap-highlight-color:transparent}
+details>summary{cursor:pointer;display:block;position:relative;line-height:1.6;margin-bottom:.625rem;outline:none;-webkit-tap-highlight-color:transparent}
+details>summary::-webkit-details-marker{display:none}
 details>summary::before{content:"";border:solid transparent;border-left:solid;border-width:.3em 0 .3em .5em;position:absolute;top:.5em;left:-1.25rem;transform:translateX(15%)}
 details[open]>summary::before{border:solid transparent;border-top:solid;border-width:.5em .3em 0;transform:translateY(15%)}
 details>summary::after{content:"";width:1.25rem;height:1em;position:absolute;top:.3em;left:-1.25rem}
@@ -208,13 +209,10 @@ table.tableblock.fit-content>caption.title{white-space:nowrap;width:0}
 .admonitionblock>table td.content{padding-left:1.125em;padding-right:1.25em;border-left:1px solid #dddddf;color:rgba(0,0,0,.6);word-wrap:anywhere}
 .admonitionblock>table td.content>:last-child>:last-child{margin-bottom:0}
 .exampleblock>.content{border:1px solid #e6e6e6;margin-bottom:1.25em;padding:1.25em;background:#fff;border-radius:4px}
-.exampleblock>.content>:first-child{margin-top:0}
-.exampleblock>.content>:last-child{margin-bottom:0}
 .sidebarblock{border:1px solid #dbdbd6;margin-bottom:1.25em;padding:1.25em;background:#f3f3f2;border-radius:4px}
-.sidebarblock>:first-child{margin-top:0}
-.sidebarblock>:last-child{margin-bottom:0}
 .sidebarblock>.content>.title{color:#7a2518;margin-top:0;text-align:center}
-.exampleblock>.content>:last-child>:last-child,.exampleblock>.content .olist>ol>li:last-child>:last-child,.exampleblock>.content .ulist>ul>li:last-child>:last-child,.exampleblock>.content .qlist>ol>li:last-child>:last-child,.sidebarblock>.content>:last-child>:last-child,.sidebarblock>.content .olist>ol>li:last-child>:last-child,.sidebarblock>.content .ulist>ul>li:last-child>:last-child,.sidebarblock>.content .qlist>ol>li:last-child>:last-child{margin-bottom:0}
+.exampleblock>.content>:first-child,.sidebarblock>.content>:first-child{margin-top:0}
+.exampleblock>.content>:last-child,.exampleblock>.content>:last-child>:last-child,.exampleblock>.content .olist>ol>li:last-child>:last-child,.exampleblock>.content .ulist>ul>li:last-child>:last-child,.exampleblock>.content .qlist>ol>li:last-child>:last-child,.sidebarblock>.content>:last-child,.sidebarblock>.content>:last-child>:last-child,.sidebarblock>.content .olist>ol>li:last-child>:last-child,.sidebarblock>.content .ulist>ul>li:last-child>:last-child,.sidebarblock>.content .qlist>ol>li:last-child>:last-child{margin-bottom:0}
 .literalblock pre,.listingblock>.content>pre{border-radius:4px;overflow-x:auto;padding:1em;font-size:.8125em}
 @media screen and (min-width:768px){.literalblock pre,.listingblock>.content>pre{font-size:.90625em}}
 @media screen and (min-width:1280px){.literalblock pre,.listingblock>.content>pre{font-size:1em}}
@@ -236,9 +234,8 @@ pre.prettyprint li:not(:first-child) code[data-lang]::before{display:none}
 table.linenotable{border-collapse:separate;border:0;margin-bottom:0;background:none}
 table.linenotable td[class]{color:inherit;vertical-align:top;padding:0;line-height:inherit;white-space:normal}
 table.linenotable td.code{padding-left:.75em}
-table.linenotable td.linenos{border-right:1px solid;opacity:.35;padding-right:.5em}
-pre.pygments .lineno{border-right:1px solid;opacity:.35;display:inline-block;margin-right:.75em}
-pre.pygments .lineno::before{content:"";margin-right:-.125em}
+table.linenotable td.linenos,pre.pygments .linenos{border-right:1px solid;opacity:.35;padding-right:.5em;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none}
+pre.pygments span.linenos{display:inline-block;margin-right:.75em}
 .quoteblock{margin:0 1em 1.25em 1.5em;display:table}
 .quoteblock:not(.excerpt)>.title{margin-left:-1.5em;margin-bottom:.75em}
 .quoteblock blockquote,.quoteblock p{color:rgba(0,0,0,.85);font-size:1.15rem;line-height:1.75;word-spacing:.1em;letter-spacing:0;font-style:italic;text-align:justify}
@@ -275,7 +272,7 @@ table.frame-none>colgroup+*>:first-child>*,table.frame-sides>colgroup+*>:first-c
 table.frame-none>:last-child>:last-child>*,table.frame-sides>:last-child>:last-child>*{border-bottom-width:0}
 table.frame-none>*>tr>:first-child,table.frame-ends>*>tr>:first-child{border-left-width:0}
 table.frame-none>*>tr>:last-child,table.frame-ends>*>tr>:last-child{border-right-width:0}
-table.stripes-all tr,table.stripes-odd tr:nth-of-type(odd),table.stripes-even tr:nth-of-type(even),table.stripes-hover tr:hover{background:#f8f8f7}
+table.stripes-all>*>tr,table.stripes-odd>*>tr:nth-of-type(odd),table.stripes-even>*>tr:nth-of-type(even),table.stripes-hover>*>tr:hover{background:#f8f8f7}
 th.halign-left,td.halign-left{text-align:left}
 th.halign-right,td.halign-right{text-align:right}
 th.halign-center,td.halign-center{text-align:center}
@@ -291,10 +288,11 @@ ol{margin-left:1.75em}
 ul li ol{margin-left:1.5em}
 dl dd{margin-left:1.125em}
 dl dd:last-child,dl dd:last-child>:last-child{margin-bottom:0}
-ol>li p,ul>li p,ul dd,ol dd,.olist .olist,.ulist .ulist,.ulist .olist,.olist .ulist{margin-bottom:.625em}
+li p,ul dd,ol dd,.olist .olist,.ulist .ulist,.ulist .olist,.olist .ulist{margin-bottom:.625em}
 ul.checklist,ul.none,ol.none,ul.no-bullet,ol.no-bullet,ol.unnumbered,ul.unstyled,ol.unstyled{list-style-type:none}
 ul.no-bullet,ol.no-bullet,ol.unnumbered{margin-left:.625em}
 ul.unstyled,ol.unstyled{margin-left:0}
+li>p:empty:only-child::before{content:"";display:inline-block}
 ul.checklist>li>p:first-child{margin-left:-1em}
 ul.checklist>li>p:first-child>.fa-square-o:first-child,ul.checklist>li>p:first-child>.fa-check-square-o:first-child{width:1.25em;font-size:.8em;position:relative;bottom:.125em}
 ul.checklist>li>p:first-child>input[type=checkbox]:first-child{margin-right:.25em}
@@ -337,8 +335,6 @@ sup.footnote a:active,sup.footnoteref a:active{text-decoration:underline}
 #footnotes .footnote a:first-of-type{font-weight:bold;text-decoration:none;margin-left:-1.05em}
 #footnotes .footnote:last-of-type{margin-bottom:0}
 #content #footnotes{margin-top:-.625em;margin-bottom:0;padding:.75em 0}
-.gist .file-data>table{border:0;background:#fff;width:100%;margin-bottom:0}
-.gist .file-data>table td.line-data{width:99%}
 div.unbreakable{page-break-inside:avoid}
 .big{font-size:larger}
 .small{font-size:smaller}
@@ -395,7 +391,7 @@ b.conum *{color:inherit!important}
 dt,th.tableblock,td.content,div.footnote{text-rendering:optimizeLegibility}
 h1,h2,p,td.content,span.alt,summary{letter-spacing:-.01em}
 p strong,td.content strong,div.footnote strong{letter-spacing:-.005em}
-p,blockquote,dt,td.content,span.alt,summary{font-size:1.0625rem}
+p,blockquote,dt,td.content,td.hdlist1,span.alt,summary{font-size:1.0625rem}
 p{margin-bottom:1.25rem}
 .sidebarblock p,.sidebarblock dt,.sidebarblock td.content,p.tableblock{font-size:1em}
 .exampleblock>.content{background:#fffef7;border-color:#e0e0dc;box-shadow:0 1px 4px #e0e0dc}
@@ -439,18 +435,18 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </style>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <style>
-/* Stylesheet for CodeRay to match GitHub theme | MIT License | http://foundation.zurb.com */
+/*! Stylesheet for CodeRay to loosely match GitHub themes | MIT License */
 pre.CodeRay{background:#f7f7f8}
-.CodeRay .line-numbers{border-right:1px solid currentColor;opacity:.35;padding:0 .5em 0 0}
+.CodeRay .line-numbers{border-right:1px solid;opacity:.35;padding:0 .5em 0 0;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none}
 .CodeRay span.line-numbers{display:inline-block;margin-right:.75em}
 .CodeRay .line-numbers strong{color:#000}
 table.CodeRay{border-collapse:separate;border:0;margin-bottom:0;background:none}
 table.CodeRay td{vertical-align:top;line-height:inherit}
 table.CodeRay td.line-numbers{text-align:right}
 table.CodeRay td.code{padding:0 0 0 .75em}
-.CodeRay .debug{color:#fff !important;background:#000080 !important}
+.CodeRay .debug{color:#fff!important;background:navy!important}
 .CodeRay .annotation{color:#007}
-.CodeRay .attribute-name{color:#000080}
+.CodeRay .attribute-name{color:navy}
 .CodeRay .attribute-value{color:#700}
 .CodeRay .binary{color:#509}
 .CodeRay .comment{color:#998;font-style:italic}
@@ -459,7 +455,7 @@ table.CodeRay td.code{padding:0 0 0 .75em}
 .CodeRay .char .delimiter{color:#039}
 .CodeRay .class{color:#458;font-weight:bold}
 .CodeRay .complex{color:#a08}
-.CodeRay .constant,.CodeRay .predefined-constant{color:#008080}
+.CodeRay .constant,.CodeRay .predefined-constant{color:teal}
 .CodeRay .color{color:#099}
 .CodeRay .class-variable{color:#369}
 .CodeRay .decorator{color:#b0b}
@@ -474,7 +470,7 @@ table.CodeRay td.code{padding:0 0 0 .75em}
 .CodeRay .exception{color:inherit}
 .CodeRay .filename{color:#099}
 .CodeRay .function{color:#900;font-weight:bold}
-.CodeRay .global-variable{color:#008080}
+.CodeRay .global-variable{color:teal}
 .CodeRay .hex{color:#058}
 .CodeRay .integer,.CodeRay .float{color:#099}
 .CodeRay .include{color:#555}
@@ -485,7 +481,7 @@ table.CodeRay td.code{padding:0 0 0 .75em}
 .CodeRay .inline-delimiter{color:#d14}
 .CodeRay .important{color:#555;font-weight:bold}
 .CodeRay .interpreted{color:#b2b}
-.CodeRay .instance-variable{color:#008080}
+.CodeRay .instance-variable{color:teal}
 .CodeRay .label{color:#970}
 .CodeRay .local-variable{color:#963}
 .CodeRay .octal{color:#40e}
@@ -495,7 +491,7 @@ table.CodeRay td.code{padding:0 0 0 .75em}
 .CodeRay .directive{font-weight:bold}
 .CodeRay .type{font-weight:bold}
 .CodeRay .predefined-type{color:inherit}
-.CodeRay .reserved,.CodeRay .keyword {color:#000;font-weight:bold}
+.CodeRay .reserved,.CodeRay .keyword{color:#000;font-weight:bold}
 .CodeRay .key{color:#808}
 .CodeRay .key .delimiter{color:#606}
 .CodeRay .key .char{color:#80f}
@@ -515,7 +511,7 @@ table.CodeRay td.code{padding:0 0 0 .75em}
 .CodeRay .symbol{color:#990073}
 .CodeRay .symbol .content{color:#a60}
 .CodeRay .symbol .delimiter{color:#630}
-.CodeRay .tag{color:#008080}
+.CodeRay .tag{color:teal}
 .CodeRay .tag-special{color:#d70}
 .CodeRay .variable{color:#036}
 .CodeRay .insert{background:#afa}
@@ -559,7 +555,7 @@ table.CodeRay td.code{padding:0 0 0 .75em}
 </li>
 <li><a href="#_advanced_usage">3. Advanced Usage</a>
 <ul class="sectlevel2">
-<li><a href="#SetupCouchDB">3.1. Setting up your own CouchDB Server</a></li>
+<li><a href="#SetupCouchDB">3.1. Setting up your own CouchDB 3.3 Server</a></li>
 <li><a href="#SSNFormat">3.2. ssn2svg</a></li>
 </ul>
 </li>
@@ -572,7 +568,7 @@ table.CodeRay td.code{padding:0 0 0 .75em}
 <div id="preamble">
 <div class="sectionbody">
 <div class="paragraph">
-<p>This document explains SmallSketch Note Version 1.1.5.</p>
+<p>This document explains SmallSketch Note Version 1.1.9.</p>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -1113,52 +1109,15 @@ See also the section <a href="#SetupCouchDB">Setting up your own CouchDB Server<
 <h2 id="_advanced_usage"><a class="anchor" href="#_advanced_usage"></a>3. Advanced Usage</h2>
 <div class="sectionbody">
 <div class="sect2">
-<h3 id="SetupCouchDB"><a class="anchor" href="#SetupCouchDB"></a>3.1. Setting up your own CouchDB Server</h3>
+<h3 id="SetupCouchDB"><a class="anchor" href="#SetupCouchDB"></a>3.1. Setting up your own CouchDB 3.3 Server</h3>
 <div class="paragraph">
-<p>It explains how to install CouchDB on Ubuntu 20.04.</p>
+<p>Install CouchDB 3.3 on your own server Ubuntu 22.04.</p>
 </div>
-<div class="admonitionblock tip">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-tip" title="Tip"></i>
-</td>
-<td class="content">
-Please also refer the official <a href="https://docs.couchdb.org/en/stable/install/unix.html">CouchDB install document</a>.
-</td>
-</tr>
-</table>
+<div class="paragraph">
+<p>Please refer this official <a href="https://docs.couchdb.org/en/stable/install/unix.html">CouchDB install document</a>.</p>
 </div>
 <div class="sect3">
-<h4 id="_install_couchdb"><a class="anchor" href="#_install_couchdb"></a>3.1.1. Install CouchDB</h4>
-<div class="paragraph">
-<p>Enabling the Apache CouchDB package repository:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="CodeRay highlight"><code data-lang="shell">$ sudo apt-get install -y gnupg ca-certificates
-$ echo &quot;deb https://apache.bintray.com/couchdb-deb focal main&quot; \
- sudo tee /etc/apt/sources.list.d/couchdb.list</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>Installing the Apache CouchDB packages:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="CodeRay highlight"><code data-lang="shell">$ sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys \
-  8756C4F765C9AC3CB6B85D62379CE192D401AB61</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>and</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="CodeRay highlight"><code data-lang="shell">$ sudo apt update
-$ sudo apt install -y couchdb</code></pre>
-</div>
-</div>
+<h4 id="_config_couchdb_3_3_when_install"><a class="anchor" href="#_config_couchdb_3_3_when_install"></a>3.1.1. Config CouchDB 3.3 when install</h4>
 <div class="paragraph">
 <p>Under installing couchdb you have to answer for these questions:</p>
 </div>
@@ -1171,9 +1130,12 @@ $ sudo apt install -y couchdb</code></pre>
 <p>IP address : 127.0.0.1</p>
 </li>
 <li>
-<p>CouchdDB admin&#8217;s password: <em>set up what you want</em></p>
+<p>CouchdDB admin&#8217;s password: adminpass</p>
 </li>
 </ul>
+</div>
+<div class="paragraph">
+<p>Of couse admin passwword <em>adminpass</em> is an example.</p>
 </div>
 <div class="paragraph">
 <p>After installing couchdb, check couchdb is running.</p>
@@ -1252,65 +1214,13 @@ Replace <em>adminpasswd</em> with yours.
 </div>
 </div>
 <div class="sect4">
-<h5 id="_step1_add_user"><a class="anchor" href="#_step1_add_user"></a>Step1 Add User</h5>
-<div class="paragraph">
-<p>To add a CouchDB user, create a <em>user.json</em> file in current dir like this:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="CodeRay highlight"><code data-lang="json">{
-  <span class="key"><span class="delimiter">&quot;</span><span class="content">docs</span><span class="delimiter">&quot;</span></span>: [
-    {
-      <span class="key"><span class="delimiter">&quot;</span><span class="content">_id</span><span class="delimiter">&quot;</span></span>: <span class="string"><span class="delimiter">&quot;</span><span class="content">org.couchdb.user:alice</span><span class="delimiter">&quot;</span></span>,
-      <span class="key"><span class="delimiter">&quot;</span><span class="content">name</span><span class="delimiter">&quot;</span></span>: <span class="string"><span class="delimiter">&quot;</span><span class="content">alice</span><span class="delimiter">&quot;</span></span>,
-      <span class="key"><span class="delimiter">&quot;</span><span class="content">password</span><span class="delimiter">&quot;</span></span>: <span class="string"><span class="delimiter">&quot;</span><span class="content">aliceInWonderland</span><span class="delimiter">&quot;</span></span>,
-      <span class="key"><span class="delimiter">&quot;</span><span class="content">roles</span><span class="delimiter">&quot;</span></span>: [],
-      <span class="key"><span class="delimiter">&quot;</span><span class="content">type</span><span class="delimiter">&quot;</span></span>: <span class="string"><span class="delimiter">&quot;</span><span class="content">user</span><span class="delimiter">&quot;</span></span>
-    }
-  ]
-}</code></pre>
-</div>
-</div>
-<div class="admonitionblock tip">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-tip" title="Tip"></i>
-</td>
-<td class="content">
-In this case, username is <em>alice</em> and password is <em>aliceInWonderland</em>.  You can change them with what you want.
-</td>
-</tr>
-</table>
-</div>
-<div class="paragraph">
-<p>And do this:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="CodeRay highlight"><code data-lang="shell">$ curl -X POST -H &quot;Content-Type:application/json&quot; -d @user.json http://admin:adminpasswd@127.0.0.1:5984/_users/_bulk_docs</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>If this command works, you get the message like this:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="CodeRay highlight"><code data-lang="json">[{<span class="key"><span class="delimiter">&quot;</span><span class="content">ok</span><span class="delimiter">&quot;</span></span>:<span class="value">true</span>,<span class="key"><span class="delimiter">&quot;</span><span class="content">id</span><span class="delimiter">&quot;</span></span>:<span class="string"><span class="delimiter">&quot;</span><span class="content">org.couchdb.user:alice</span><span class="delimiter">&quot;</span></span>,<span class="key"><span class="delimiter">&quot;</span><span class="content">rev</span><span class="delimiter">&quot;</span></span>:<span class="string"><span class="delimiter">&quot;</span><span class="content">1-18d335cdfa1c7df9f71fdab2e2ed0264</span><span class="delimiter">&quot;</span></span>}]</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>The <em>alice</em> user has been added.</p>
-</div>
-</div>
-<div class="sect4">
-<h5 id="_step2_add_database"><a class="anchor" href="#_step2_add_database"></a>Step2 Add Database</h5>
+<h5 id="_step1_add_database"><a class="anchor" href="#_step1_add_database"></a>Step1 Add Database</h5>
 <div class="paragraph">
 <p>To add a CouchDB database, do this:</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="CodeRay highlight"><code data-lang="shell">$ curl -X PUT http://admin:adminpasswd@127.0.0.1:5984/ssnote</code></pre>
+<pre class="CodeRay highlight"><code data-lang="shell">$ curl -X PUT http://admin:adminpass@127.0.0.1:5984/ssnote</code></pre>
 </div>
 </div>
 <div class="admonitionblock tip">
@@ -1320,7 +1230,7 @@ In this case, username is <em>alice</em> and password is <em>aliceInWonderland</
 <i class="fa icon-tip" title="Tip"></i>
 </td>
 <td class="content">
-This <em>ssnote</em> is database name. You can change another database name what you want.
+This <em>ssnote</em> is database name.
 </td>
 </tr>
 </table>
@@ -1335,12 +1245,9 @@ This <em>ssnote</em> is database name. You can change another database name what
 </div>
 </div>
 <div class="sect4">
-<h5 id="_step3_add_security"><a class="anchor" href="#_step3_add_security"></a>Step3 Add Security</h5>
+<h5 id="_step2_check_security"><a class="anchor" href="#_step2_check_security"></a>Step2 Check Security</h5>
 <div class="paragraph">
-<p>Next, update this <em>ssnote</em> database security for the <em>alice</em> user.</p>
-</div>
-<div class="paragraph">
-<p>To get current the <em>ssnote</em> database security settings:</p>
+<p>To get and check current the <em>ssnote</em> database security settings:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -1349,59 +1256,11 @@ This <em>ssnote</em> is database name. You can change another database name what
 </div>
 </div>
 <div class="paragraph">
-<p>And a <em>create security.json</em> file in current dir:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="CodeRay highlight"><code data-lang="json">{
-  <span class="key"><span class="delimiter">&quot;</span><span class="content">members</span><span class="delimiter">&quot;</span></span>: {
-    <span class="key"><span class="delimiter">&quot;</span><span class="content">roles</span><span class="delimiter">&quot;</span></span>: [
-      <span class="string"><span class="delimiter">&quot;</span><span class="content">_admin</span><span class="delimiter">&quot;</span></span>
-    ]
-  },
-  <span class="key"><span class="delimiter">&quot;</span><span class="content">admins</span><span class="delimiter">&quot;</span></span>: {
-    <span class="key"><span class="delimiter">&quot;</span><span class="content">roles</span><span class="delimiter">&quot;</span></span>: [
-      <span class="string"><span class="delimiter">&quot;</span><span class="content">_admin</span><span class="delimiter">&quot;</span></span>
-    ],
-    <span class="key"><span class="delimiter">&quot;</span><span class="content">names</span><span class="delimiter">&quot;</span></span>: [
-      <span class="string"><span class="delimiter">&quot;</span><span class="content">alice</span><span class="delimiter">&quot;</span></span>
-    ]
-  }
-}</code></pre>
-</div>
-</div>
-<div class="admonitionblock tip">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-tip" title="Tip"></i>
-</td>
-<td class="content">
-This json file, just adding the <em>alice</em> user into <em>admins.names</em> from the current security settings json.
-</td>
-</tr>
-</table>
-</div>
-<div class="paragraph">
-<p>To update the security, do this:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="CodeRay highlight"><code data-lang="shell">$ curl -X PUT -H &quot;Content-Type:application/json&quot; -d @security.json http://admin:adminpasswd@127.0.0.1:5984/ssnote/_security
-{&quot;ok&quot;:true}</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>Check if the user alice is in <em>admins.names</em>, get the security again:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="CodeRay highlight"><code data-lang="shell">$ curl -X GET http://admin:adminpasswd@127.0.0.1:5984/ssnote/_security</code></pre>
-</div>
+<p>It&#8217;s OK. The user admin is set up.</p>
 </div>
 </div>
 <div class="sect4">
-<h5 id="_step4_httpd"><a class="anchor" href="#_step4_httpd"></a>Step4 Httpd</h5>
+<h5 id="_step3_httpd"><a class="anchor" href="#_step3_httpd"></a>Step3 Httpd</h5>
 <div class="paragraph">
 <p>This is the final step, make CouchDB as httpd.</p>
 </div>
@@ -1474,15 +1333,12 @@ If you want use CouchDB on the internet, you can use nginx and reverse proxy.
 <p>URL: <a href="http://192.168.10.100:5984/ssnote" class="bare">http://192.168.10.100:5984/ssnote</a></p>
 </li>
 <li>
-<p>Username: alice</p>
+<p>Username: admin</p>
 </li>
 <li>
-<p>Password: aliceInWonderland</p>
+<p>Password: adminpass</p>
 </li>
 </ul>
-</div>
-<div class="paragraph">
-<p>Of course, these parameters are just examples. Please change them with yours.</p>
 </div>
 <div class="admonitionblock tip">
 <table>
@@ -1513,7 +1369,7 @@ It is supported Linux/Windows/macOS.</p>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2021-10-19 08:01:37 +0900
+Last updated 2023-07-13 07:49:45 UTC
 </div>
 </div>
 </body>

@@ -218,13 +218,22 @@ About https://developers.googleblog.com/2020/08/digital-ink-recognition-in-ml-ki
 == Advanced Usage
 
 [[SetupCouchDB]]
-=== Setting up your own CouchDB Server
+=== Setting up your own CouchDB 3.3 Server
 
-It explains how to install CouchDB on Ubuntu 20.04.
+Install CouchDB 3.3 on your own server Ubuntu 22.04.
+
+Please refer this official https://docs.couchdb.org/en/stable/install/unix.html[CouchDB install document].
+
+////
+It explains how to install CouchDB on Ubuntu 22.04.
 
 TIP: Please also refer the official https://docs.couchdb.org/en/stable/install/unix.html[CouchDB install document].
+////
 
 
+==== Config CouchDB 3.3 when install
+
+////
 ==== Install CouchDB
 
 Enabling the Apache CouchDB package repository:
@@ -251,12 +260,15 @@ and
 $ sudo apt update
 $ sudo apt install -y couchdb
 ----
+////
 
 Under installing couchdb you have to answer for these questions:
 
 * Server Type : standalone
 * IP address : 127.0.0.1
-* CouchdDB admin's password: _set up what you want_
+* CouchdDB admin's password: adminpass
+
+Of couse admin passwword _adminpass_ is an example.
 
 After installing couchdb, check couchdb is running.
 
@@ -308,55 +320,16 @@ $ sudo systemctl start couchdb
 ----
   
 
-===== Step1 Add User
-
-To add a CouchDB user, create a _user.json_ file in current dir like this:
-
-[source, json]
-----
-{
-  "docs": [
-    {
-      "_id": "org.couchdb.user:alice",
-      "name": "alice",
-      "password": "aliceInWonderland",
-      "roles": [],
-      "type": "user"
-    }
-  ]
-}
-----
-
-TIP: In this case, username is _alice_ and password is _aliceInWonderland_.  You can change them with what you want.
-
-
-And do this:
-
-[source, shell]
-----
-$ curl -X POST -H "Content-Type:application/json" -d @user.json http://admin:adminpasswd@127.0.0.1:5984/_users/_bulk_docs
-----
-
-If this command works, you get the message like this:
-
-[source, json]
-----
-[{"ok":true,"id":"org.couchdb.user:alice","rev":"1-18d335cdfa1c7df9f71fdab2e2ed0264"}]
-----
-
-The _alice_ user has been added.
-
-
-===== Step2 Add Database
+===== Step1 Add Database
 
 To add a CouchDB database, do this:
 
 [source, shell]
 ----
-$ curl -X PUT http://admin:adminpasswd@127.0.0.1:5984/ssnote
+$ curl -X PUT http://admin:adminpass@127.0.0.1:5984/ssnote
 ----
 
-TIP: This _ssnote_ is database name. You can change another database name what you want.
+TIP: This _ssnote_ is database name.
 
 
 If this command is successful, you get this message:
@@ -367,11 +340,9 @@ If this command is successful, you get this message:
 ----
 
 
-===== Step3 Add Security
+===== Step2 Check Security
 
-Next, update this _ssnote_ database security for the _alice_ user.
-
-To get current the _ssnote_ database security settings:
+To get and check current the _ssnote_ database security settings:
 
 [source, shell]
 ----
@@ -379,43 +350,8 @@ $ curl -X GET http://admin:adminpasswd@127.0.0.1:5984/ssnote/_security
 {"members":{"roles":["_admin"]},"admins":{"roles":["_admin"]}}
 ----
 
-And a _create security.json_ file in current dir:
+It's OK. The user admin is set up.
 
-[source, json]
-----
-{
-  "members": {
-    "roles": [
-      "_admin"
-    ]
-  },
-  "admins": {
-    "roles": [
-      "_admin"
-    ],
-    "names": [
-      "alice"
-    ]
-  }
-}
-----
-
-TIP: This json file, just adding the _alice_ user into _admins.names_ from the current security settings json.
-
-To update the security, do this:
-
-[source, shell]
-----
-$ curl -X PUT -H "Content-Type:application/json" -d @security.json http://admin:adminpasswd@127.0.0.1:5984/ssnote/_security
-{"ok":true}
-----
-
-Check if the user alice is in _admins.names_, get the security again:
-
-[source, shell]
-----
-$ curl -X GET http://admin:adminpasswd@127.0.0.1:5984/ssnote/_security
-----
 
 ////
 MEMO: keep this note, but this setting is applied automatic by smallsketch note client. So there is no need to set up any more.
@@ -450,7 +386,7 @@ It has been added the design document _count_ in the _ssnote_ database.
 ////
 
 
-===== Step4 Httpd 
+===== Step3 Httpd 
 
 This is the final step, make CouchDB as httpd.
 
@@ -499,10 +435,10 @@ image::screenshots/cloud-settings-with-alice.png[alt=Cloud Settings with Alice, 
 ===== Endpoint
 
 * URL: http://192.168.10.100:5984/ssnote
-* Username: alice
-* Password: aliceInWonderland
+* Username: admin
+* Password: adminpass
 
-Of course, these parameters are just examples. Please change them with yours.
+// Of course, these parameters are just examples. Please change them with yours.
 
 TIP: About URL:  http:// + CouchDB IP address + : + port + / + CouchDB database name
 

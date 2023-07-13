@@ -8,7 +8,7 @@ SmallSketch Note <https://smallsketch.app/>
 :icons: font
 :imagesdir: images
 
-This document explains SmallSketch Note Version 1.1.5.
+This document explains SmallSketch Note Version 1.1.9.
 
 [NOTE]
 link:smallsketch-note-user-guide.pdf[User Guide (PDF format)]
