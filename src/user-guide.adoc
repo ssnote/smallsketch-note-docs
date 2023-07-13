@@ -268,7 +268,7 @@ Under installing couchdb you have to answer for these questions:
 * IP address : 127.0.0.1
 * CouchdDB admin's password: adminpass
 
-Of couse admin passwword _adminpass_ is an example.
+TIP: Of couse admin passwword _adminpass_ is an example.
 
 After installing couchdb, check couchdb is running.
 
