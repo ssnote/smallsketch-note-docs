@@ -224,49 +224,14 @@ Install CouchDB 3.3 on your own server Ubuntu 22.04.
 
 Please refer this official https://docs.couchdb.org/en/stable/install/unix.html[CouchDB install document].
 
-////
-It explains how to install CouchDB on Ubuntu 22.04.
+==== Config CouchDB 3.3 under installing
 
-TIP: Please also refer the official https://docs.couchdb.org/en/stable/install/unix.html[CouchDB install document].
-////
-
-
-==== Config CouchDB 3.3 when install
-
-////
-==== Install CouchDB
-
-Enabling the Apache CouchDB package repository:
-
-[source, shell]
-----
-$ sudo apt-get install -y gnupg ca-certificates
-$ echo "deb https://apache.bintray.com/couchdb-deb focal main" \
- sudo tee /etc/apt/sources.list.d/couchdb.list
-----
-
-Installing the Apache CouchDB packages:
-
-[source, shell]
-----
-$ sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys \
-  8756C4F765C9AC3CB6B85D62379CE192D401AB61
-----
-
-and
-
-[source, shell]
-----
-$ sudo apt update
-$ sudo apt install -y couchdb
-----
-////
-
-Under installing couchdb you have to answer for these questions:
+Under installing couchdb you have to answer for a few questions:
 
 * Server Type : standalone
+* Magic Cookie : _any string you want_
 * IP address : 127.0.0.1
-* CouchdDB admin's password: adminpass
+* CouchdDB admin's password: _adminpass_
 
 TIP: Of couse admin passwword _adminpass_ is an example.
 
@@ -289,11 +254,6 @@ $ sudo systemctl stop couchdb
 
 ==== Config CouchDB for SmallSketch Note server
 
-////
-For using CouchDB as SmallSketch Note's server, just doing a few steps. 
-
-////
-
 It takes under 4 steps.
 
 TIP: It needs _curl_ command. If necessary, do _sudo apt install curl_.
@@ -305,10 +265,10 @@ Before start configuring, check CouchDB is running by curl.
 
 [source, shell]
 ----
-$ curl http://admin:adminpasswd@127.0.0.1:5984/_up
+$ curl http://admin:adminpass@127.0.0.1:5984/_up
 ----
 
-TIP: Replace _adminpasswd_ with yours.
+TIP: Replace _adminpass_ with yours.
 
 If CouchDB is running, returning such a message:
 
@@ -351,44 +311,11 @@ To get and check current the _ssnote_ database security settings:
 
 [source, shell]
 ----
-$ curl -X GET http://admin:adminpasswd@127.0.0.1:5984/ssnote/_security
+$ curl -X GET http://admin:adminpass@127.0.0.1:5984/ssnote/_security
 {"members":{"roles":["_admin"]},"admins":{"roles":["_admin"]}}
 ----
 
 It's OK. The user admin is set up.
-
-
-////
-MEMO: keep this note, but this setting is applied automatic by smallsketch note client. So there is no need to set up any more.
-
-Add design document
-
-
-Create _designdoc.json_ file in current dir:
-
-[source, json]
-----
-{
-  "language": "javascript",
-  "views": {
-    "count": {
-      "map": "function(doc){ if(doc.sync_id!=null){ emit(doc.sync_id, 1) } }",
-      "reduce": "function(key, value){ return sum(value) }"
-    }
-  }
-}
-----
-
-And then do this:
-
-[source, shell]
-----
-$ curl -X PUT -H "Content-Type:application/json" -d @designdoc.json http://admin:adminpasswd@127.0.0.1:5984/ssnote/_design/count
-{"ok":true,"id":"_design/count","rev":"1-b380c17bbeaf2ab84a3415c6983c85e5"}
-----
-
-It has been added the design document _count_ in the _ssnote_ database.
-////
 
 
 ===== Step4 Set up Httpd 
@@ -442,8 +369,6 @@ image::screenshots/cloud-settings-with-alice.png[alt=Cloud Settings with Alice, 
 * URL: http://192.168.10.100:5984/ssnote
 * Username: admin
 * Password: adminpass
-
-// Of course, these parameters are just examples. Please change them with yours.
 
 TIP: About URL:  http:// + CouchDB IP address + : + port + / + CouchDB database name
 
