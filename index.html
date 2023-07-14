@@ -1105,9 +1105,9 @@ See also the section <a href="#SetupCouchDB">Setting up your own CouchDB Server<
 <p>Please refer this official <a href="https://docs.couchdb.org/en/stable/install/unix.html">CouchDB install document</a>.</p>
 </div>
 <div class="sect3">
-<h4 id="_config_couchdb_3_3_when_install"><a class="anchor" href="#_config_couchdb_3_3_when_install"></a>3.1.1. Config CouchDB 3.3 when install</h4>
+<h4 id="_config_couchdb_3_3_under_installing"><a class="anchor" href="#_config_couchdb_3_3_under_installing"></a>3.1.1. Config CouchDB 3.3 under installing</h4>
 <div class="paragraph">
-<p>Under installing couchdb you have to answer for these questions:</p>
+<p>Under installing couchdb you have to answer for a few questions:</p>
 </div>
 <div class="ulist">
 <ul>
@@ -1115,10 +1115,13 @@ See also the section <a href="#SetupCouchDB">Setting up your own CouchDB Server<
 <p>Server Type : standalone</p>
 </li>
 <li>
+<p>Magic Cookie : <em>any string you want</em></p>
+</li>
+<li>
 <p>IP address : 127.0.0.1</p>
 </li>
 <li>
-<p>CouchdDB admin&#8217;s password: adminpass</p>
+<p>CouchdDB admin&#8217;s password: <em>adminpass</em></p>
 </li>
 </ul>
 </div>
@@ -1178,7 +1181,7 @@ It needs <em>curl</em> command. If necessary, do <em>sudo apt install curl</em>.
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="CodeRay highlight"><code data-lang="shell">$ curl http://admin:adminpasswd@127.0.0.1:5984/_up</code></pre>
+<pre class="CodeRay highlight"><code data-lang="shell">$ curl http://admin:adminpass@127.0.0.1:5984/_up</code></pre>
 </div>
 </div>
 <div class="admonitionblock tip">
@@ -1188,7 +1191,7 @@ It needs <em>curl</em> command. If necessary, do <em>sudo apt install curl</em>.
 <i class="fa icon-tip" title="Tip"></i>
 </td>
 <td class="content">
-Replace <em>adminpasswd</em> with yours.
+Replace <em>adminpass</em> with yours.
 </td>
 </tr>
 </table>
@@ -1248,7 +1251,7 @@ This <em>ssnote</em> is database name.
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="CodeRay highlight"><code data-lang="shell">$ curl -X GET http://admin:adminpasswd@127.0.0.1:5984/ssnote/_security
+<pre class="CodeRay highlight"><code data-lang="shell">$ curl -X GET http://admin:adminpass@127.0.0.1:5984/ssnote/_security
 {&quot;members&quot;:{&quot;roles&quot;:[&quot;_admin&quot;]},&quot;admins&quot;:{&quot;roles&quot;:[&quot;_admin&quot;]}}</code></pre>
 </div>
 </div>
@@ -1366,7 +1369,7 @@ It is supported Linux/Windows/macOS.</p>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2023-07-13 08:13:25 UTC
+Last updated 2023-07-14 00:12:51 UTC
 </div>
 </div>
 </body>
