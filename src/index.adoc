@@ -1,5 +1,5 @@
 = SmallSketch Note User Guide
-SmallSketch Note <https://smallsketch.app/>
+SmallSketch Note <https://www.mindboardapps.com/>
 :doctype: book
 :source-highlighter: coderay
 :toc: left
